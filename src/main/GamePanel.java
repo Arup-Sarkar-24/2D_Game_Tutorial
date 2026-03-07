@@ -59,7 +59,7 @@ public class GamePanel extends JPanel {
     public void paintComponent(Graphics g){
         super.paintComponent(g);
         subImg= img.getSubimage(1*64,8*40,64,40);
-
+        //add a sub image
         g.drawImage(subImg,(int)xDelta,(int)yDelta,128,80,null);
     }
 }
