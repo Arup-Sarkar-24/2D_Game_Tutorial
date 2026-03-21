@@ -4,7 +4,7 @@ import utilz.LoadSave;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import static utilz.Contants.UI.PauseButtons.*;
+import static utilz.Constants.UI.PauseButtons.*;
 
 public class SoundButton extends PauseButton {
 

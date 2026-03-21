@@ -2,7 +2,7 @@ package ui;
 
 import gamestates.Gamestate;
 import utilz.LoadSave;
-import static utilz.Contants.UI.Buttons.*;
+import static utilz.Constants.UI.Buttons.*;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;

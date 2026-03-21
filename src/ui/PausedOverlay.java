@@ -4,9 +4,9 @@ import gamestates.Gamestate;
 import gamestates.Playing;
 import main.Game;
 import utilz.LoadSave;
-import static utilz.Contants.UI.PauseButtons.*;
-import static utilz.Contants.UI.URMButton.*;
-import static utilz.Contants.UI.VolumeButton.*;
+import static utilz.Constants.UI.PauseButtons.*;
+import static utilz.Constants.UI.URMButton.*;
+import static utilz.Constants.UI.VolumeButton.*;
 
 
 import java.awt.*;

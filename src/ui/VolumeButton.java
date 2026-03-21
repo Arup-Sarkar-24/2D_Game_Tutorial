@@ -5,7 +5,7 @@ import utilz.LoadSave;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
-import static utilz.Contants.UI.VolumeButton.*;
+import static utilz.Constants.UI.VolumeButton.*;
 
 public class VolumeButton extends PauseButton{
 
