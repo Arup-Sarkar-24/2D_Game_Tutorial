@@ -14,7 +14,7 @@ public class Playing extends State implements Statemethods{
     private Player player;
     private LevelManager levelManager;
     private PausedOverlay pausedOverlay;
-    private boolean paused = true;
+    private boolean paused = false;
 
 
     public Playing(Game game) {
@@ -26,22 +26,25 @@ public class Playing extends State implements Statemethods{
         levelManager = new LevelManager(game);
         player = new Player(200,200, (int) (64 * Game.SCALE),(int) (40 * Game.SCALE));
         player.loadLvlData(levelManager.getCurrentLevel().getLvlData());
-        pausedOverlay = new PausedOverlay();
+        pausedOverlay = new PausedOverlay(this);
     }
 
     @Override
     public void update() {
-        levelManager.update();
-        player.update();
-
-        pausedOverlay.update();
+        if (!paused) {
+            levelManager.update();
+            player.update();
+        } else
+            pausedOverlay.update();
     }
 
     @Override
     public void draw(Graphics g) {
         levelManager.draw(g);
         player.render(g);
-        pausedOverlay.draw(g);
+
+        if (paused)
+            pausedOverlay.draw(g);
     }
 
     @Override
@@ -51,6 +54,11 @@ public class Playing extends State implements Statemethods{
             player.setAttacking(true);
         }
 
+    }
+
+    public void mouseDragged(MouseEvent e) {
+        if (paused)
+            pausedOverlay.mouseDragged(e);
     }
 
     @Override
@@ -86,6 +94,7 @@ public class Playing extends State implements Statemethods{
             case KeyEvent.VK_RIGHT, KeyEvent.VK_D,KeyEvent.VK_6 -> player.setRight(true);
             case KeyEvent.VK_SPACE -> player.setJump(true);
             case KeyEvent.VK_BACK_SPACE -> Gamestate.state = Gamestate.MENU;
+            case KeyEvent.VK_ESCAPE -> paused = !paused;
 
         }
 
@@ -99,6 +108,10 @@ public class Playing extends State implements Statemethods{
             case KeyEvent.VK_RIGHT, KeyEvent.VK_D,KeyEvent.VK_6 -> player.setRight(false);
             case KeyEvent.VK_SPACE -> player.setJump(false);
         }
+    }
+
+    public void unpauseGame() {
+        paused = false;
     }
 
     public void windowFocusLost(){
