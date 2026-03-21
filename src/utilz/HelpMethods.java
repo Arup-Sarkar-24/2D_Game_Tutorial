@@ -7,17 +7,18 @@ import java.awt.geom.Rectangle2D;
 public class HelpMethods {
 
     public static boolean CanMoveHere( float x, float y, float width, float height, int[][] lvlData ){
-        if (!isSolid(x,y,lvlData))
-            if (!isSolid(x + width,y + height,lvlData))
-                if (!isSolid(x + width,y,lvlData))
-                    if (!isSolid(x,y + height,lvlData))
+        if (!isSolid(x, y, lvlData))
+            if (!isSolid(x + width,y + height, lvlData))
+                if (!isSolid(x + width, y, lvlData))
+                    if (!isSolid(x,y + height, lvlData))
                         return true;
         return false;
     }
 
     private static boolean isSolid(float x, float y, int[][] lvlData){
 
-        if (x < 0 || x >= Game.GAME_WIDTH)
+        int maxWidth = lvlData[0].length * Game.TILES_SIZE;
+        if (x < 0 || x >= maxWidth)
             return true;
         if (y < 0 || y >= Game.GAME_HEIGHT)
             return true;

@@ -11,7 +11,7 @@ import static utilz.HelpMethods.*;
 public class Player extends Entity{
 
     private BufferedImage[][] animations;
-    private int aniTick, aniIndex, aniSpeed=15;
+    private int aniTick, aniIndex, aniSpeed =  25;
     private int playerAction = IDLE;
     private boolean moving = false, attacking = false;
     private boolean left, right, up, down, jump;
@@ -43,8 +43,8 @@ public class Player extends Entity{
 
     }
 
-    public void render(Graphics g){
-        g.drawImage(animations[playerAction][aniIndex],(int)(hitbox.x - xDrawOffset),(int)(hitbox.y - yDrawOffset),width,height,null);
+    public void render(Graphics g, int lvlOffset){
+        g.drawImage(animations[playerAction][aniIndex],(int)(hitbox.x - xDrawOffset) - lvlOffset,(int)(hitbox.y - yDrawOffset), width, height,null);
         //drawHitbox(g);
     }
 
@@ -80,11 +80,12 @@ public class Player extends Entity{
 
         if (attacking)
             playerAction = ATTACK_1;
+
         if (startAni != playerAction)
-            resetAnitick();
+            resetAniTick();
     }
 
-    private void resetAnitick() {
+    private void resetAniTick() {
         aniTick = 0;
         aniIndex = 0;
     }
@@ -94,8 +95,11 @@ public class Player extends Entity{
         
         if (jump)
             jump();
-        if (!left && !right && !inAir)
-            return;
+
+
+        if (!inAir)
+            if ((!left && !right) || (right && left))
+              return;
 
         float xSpeed = 0;
 
